@@ -21,6 +21,23 @@ const sectionHeading = (kicker, title) => `
   </div>
 `;
 
+const renderMedia = (media, className, fallbackClass = "") => {
+  if (!media || media.type === "graphic" || !media.src) {
+    return `<div class="${escapeHtml(`${className} ${fallbackClass}`.trim())}" aria-hidden="true"></div>`;
+  }
+
+  if (media.type === "video") {
+    const poster = media.poster ? ` poster="${escapeHtml(media.poster)}"` : "";
+    return `
+      <video class="${escapeHtml(className)}" autoplay muted loop playsinline${poster} aria-label="${escapeHtml(media.alt || "Portfolio video")}">
+        <source src="${escapeHtml(media.src)}" />
+      </video>
+    `;
+  }
+
+  return `<img class="${escapeHtml(className)}" src="${escapeHtml(media.src)}" alt="${escapeHtml(media.alt || "Portfolio image")}" loading="lazy" />`;
+};
+
 app.innerHTML = `
   <header class="site-header">
     <a class="brand" href="#top" aria-label="${escapeHtml(content.meta.name)} home">${escapeHtml(content.meta.name)}</a>
@@ -46,7 +63,8 @@ app.innerHTML = `
         </div>
       </div>
 
-      <div class="hero-visual" aria-label="Kitchen portfolio visual">
+      <div class="hero-visual ${content.hero.media?.type !== "graphic" && content.hero.media?.src ? "has-media" : ""}" aria-label="Kitchen portfolio visual">
+        ${renderMedia(content.hero.media, "hero-media")}
         <div class="plate-mark">
           <span>${escapeHtml(content.hero.visualLabel)}</span>
           <strong>${escapeHtml(content.hero.visualTitle)}</strong>
@@ -126,7 +144,7 @@ app.innerHTML = `
           .map(
             (item) => `
               <article class="work-tile">
-                <div class="tile-image ${escapeHtml(item.style)}" aria-hidden="true"></div>
+                ${renderMedia(item.media, "tile-image", item.style)}
                 <h3>${escapeHtml(item.title)}</h3>
                 <p>${escapeHtml(item.detail)}</p>
               </article>

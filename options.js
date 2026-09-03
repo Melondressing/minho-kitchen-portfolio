@@ -16,6 +16,10 @@ const fields = [
   ["hero.intro", "Hero intro", "textarea"],
   ["hero.visualLabel", "Hero visual label", "input"],
   ["hero.visualTitle", "Hero visual title", "input"],
+  ["hero.media.type", "Hero media type: graphic, image, or video", "select"],
+  ["hero.media.src", "Hero media path or URL", "input"],
+  ["hero.media.poster", "Hero video poster path", "input"],
+  ["hero.media.alt", "Hero media alt text", "input"],
   ["profile.title", "Profile statement", "textarea"],
   ["experience.title", "Experience heading", "input"],
   ["featured.title", "Featured title", "input"],
@@ -45,6 +49,15 @@ content.workStyle.items.forEach((_, index) => {
   fields.push([`workStyle.items.${index}.detail`, `Work style ${index + 1} detail`, "textarea"]);
 });
 
+content.selectedWork.items.forEach((_, index) => {
+  fields.push([`selectedWork.items.${index}.title`, `Selected work ${index + 1} title`, "input"]);
+  fields.push([`selectedWork.items.${index}.detail`, `Selected work ${index + 1} detail`, "textarea"]);
+  fields.push([`selectedWork.items.${index}.media.type`, `Selected work ${index + 1} media type`, "select"]);
+  fields.push([`selectedWork.items.${index}.media.src`, `Selected work ${index + 1} media path or URL`, "input"]);
+  fields.push([`selectedWork.items.${index}.media.poster`, `Selected work ${index + 1} video poster path`, "input"]);
+  fields.push([`selectedWork.items.${index}.media.alt`, `Selected work ${index + 1} media alt text`, "input"]);
+});
+
 const keyFor = (key) => (Number.isNaN(Number(key)) ? key : Number(key));
 
 const getValue = (path) => path.split(".").reduce((value, key) => value?.[keyFor(key)], content);
@@ -69,6 +82,12 @@ const fieldMarkup = ([path, label, type]) => `
     ${
       type === "textarea"
         ? `<textarea name="${escapeHtml(path)}" rows="4">${escapeHtml(getValue(path))}</textarea>`
+        : type === "select"
+          ? `<select name="${escapeHtml(path)}">
+              ${["graphic", "image", "video"]
+                .map((option) => `<option value="${option}" ${getValue(path) === option ? "selected" : ""}>${option}</option>`)
+                .join("")}
+            </select>`
         : `<input name="${escapeHtml(path)}" value="${escapeHtml(getValue(path))}" />`
     }
   </label>

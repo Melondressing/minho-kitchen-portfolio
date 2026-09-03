@@ -12,7 +12,13 @@ export const siteContent = {
       "Hands-on cook with experience across Korean, Italian and modern brunch kitchens, developing from section cooking toward broader service coordination and kitchen responsibility.",
     visualLabel: "Hot Section",
     visualTitle: "Grill / Fryer / Egg / Salad / Pass",
-    serviceTags: ["Prep", "Docket Timing", "Quality Control"]
+    serviceTags: ["Prep", "Docket Timing", "Quality Control"],
+    media: {
+      type: "graphic",
+      src: "",
+      poster: "",
+      alt: "Kitchen service visual"
+    }
   },
   profile: {
     kicker: "Profile",
@@ -118,17 +124,35 @@ export const siteContent = {
       {
         style: "tile-breakfast",
         title: "Breakfast Service",
-        detail: "Multi-component cooking across eggs, grill, fryer and pass timing."
+        detail: "Multi-component cooking across eggs, grill, fryer and pass timing.",
+        media: {
+          type: "graphic",
+          src: "",
+          poster: "",
+          alt: "Breakfast service visual"
+        }
       },
       {
         style: "tile-prep",
         title: "Prep & Readiness",
-        detail: "Organised mise en place, stock control and section setup before service."
+        detail: "Organised mise en place, stock control and section setup before service.",
+        media: {
+          type: "graphic",
+          src: "",
+          poster: "",
+          alt: "Prep and readiness visual"
+        }
       },
       {
         style: "tile-training",
         title: "Training Systems",
-        detail: "Visual recipe and plating guides for consistent staff execution."
+        detail: "Visual recipe and plating guides for consistent staff execution.",
+        media: {
+          type: "graphic",
+          src: "",
+          poster: "",
+          alt: "Training material visual"
+        }
       }
     ]
   },
