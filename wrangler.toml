@@ -1,0 +1,5 @@
+name = "minho-kitchen-portfolio"
+pages_build_output_dir = "dist"
+
+[vars]
+SITE_NAME = "Minho Max Lee Kitchen Portfolio"

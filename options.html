@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Portfolio Content | Minho Max Lee</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="editor-page">
+    <main class="editor-shell">
+      <header class="editor-header">
+        <div>
+          <p class="kicker">Options</p>
+          <h1>Edit Portfolio Content</h1>
+          <p>
+            Change the text here, save it for this browser preview, then export
+            the updated content file when you are ready to make it permanent.
+          </p>
+        </div>
+        <a class="button button-light" href="./index.html">Back to site</a>
+      </header>
+
+      <form id="contentForm" class="editor-form"></form>
+
+      <div class="editor-actions">
+        <button class="button button-dark" type="button" id="saveButton">Save preview</button>
+        <button class="button button-light" type="button" id="exportButton">Export content.js</button>
+        <button class="button button-light" type="button" id="resetButton">Reset</button>
+      </div>
+
+      <p class="editor-status" id="editorStatus" role="status"></p>
+    </main>
+
+    <script type="module" src="./options.js"></script>
+  </body>
+</html>
